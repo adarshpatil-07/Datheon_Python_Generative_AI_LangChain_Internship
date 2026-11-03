@@ -1,0 +1,25 @@
+{
+    "invoice_number": "INV-2026-001",
+    "invoice_date": "2026-11-04",
+    "due_date": "2026-11-14",
+    "vendor_name": "ABC Technologies Pvt Ltd",
+    "customer_name": "XYZ Solutions",
+    "currency": "INR",
+    "items": [
+        {
+            "description": "Wireless Keyboard",
+            "quantity": 2.0,
+            "unit_price": "750",
+            "total": "1500"
+        },
+        {
+            "description": "Wireless Mouse",
+            "quantity": 1.0,
+            "unit_price": "500",
+            "total": "500"
+        }
+    ],
+    "subtotal": "2000",
+    "tax": "360",
+    "total_amount": "2360"
+}

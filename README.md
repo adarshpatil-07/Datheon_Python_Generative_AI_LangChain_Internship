@@ -1,0 +1,30 @@
+
+# Datheon Python + Generative AI & LangChain Internship
+
+This repository contains my project submissions for the Datheon Python, Generative AI and LangChain Internship.
+
+## Internship Tasks
+
+| Task | Project | Status |
+|---|---|---|
+| 1 | Structured LLM Prompt Pipeline & JSON Extractor | In Progress |
+| 2 | Document Q&A Assistant with RAG | Pending |
+| 3 | Multi-Tool Autonomous AI Agent | Pending |
+| 4 | Interactive Full-Stack AI Chatbot | Pending |
+
+## Technologies
+
+- Python
+- Google Gemini API
+- Pydantic
+- LangChain
+- RAG
+- Vector Databases
+
+## Repository Structure
+
+Each task has its own directory containing source code, documentation and relevant resources.
+
+## Author
+
+Adarsh Patil

@@ -1,0 +1,23 @@
+INVOICE
+
+Invoice Number: INV-2026-001
+Invoice Date: 04 November 2026
+Due Date: 14 November 2026
+
+Vendor: ABC Technologies Pvt Ltd
+Customer: XYZ Solutions
+
+Items:
+1. Wireless Keyboard
+   Quantity: 2
+   Unit Price: 750 INR
+   Total: 1500 INR
+
+2. Wireless Mouse
+   Quantity: 1
+   Unit Price: 500 INR
+   Total: 500 INR
+
+Subtotal: 2000 INR
+GST: 360 INR
+Grand Total: 2360 INR
