@@ -32,6 +32,9 @@ def build_invoice_prompt(invoice_text: str) -> str:
     """
     Build a parameterized prompt using the supplied invoice text.
     """
+    if not invoice_text or not isinstance(invoice_text, str) or not invoice_text.strip():
+        raise ValueError("Invoice text cannot be empty.")
+
     return INVOICE_EXTRACTION_PROMPT.format(
         invoice_text=invoice_text
     )
