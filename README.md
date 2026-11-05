@@ -7,8 +7,8 @@ This repository contains my project submissions for the Datheon Python, Generati
 
 | Task | Project | Status |
 |---|---|---|
-| 1 | Structured LLM Prompt Pipeline & JSON Extractor | In Progress |
-| 2 | Document Q&A Assistant with RAG | Pending |
+| 1 | Structured LLM Prompt Pipeline & JSON Extractor | Completed |
+| 2 | Document Q&A Assistant with RAG | In Progress |
 | 3 | Multi-Tool Autonomous AI Agent | Pending |
 | 4 | Interactive Full-Stack AI Chatbot | Pending |
 
