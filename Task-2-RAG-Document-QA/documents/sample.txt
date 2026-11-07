@@ -1,0 +1,33 @@
+# Artificial Intelligence and Machine Learning
+
+Artificial Intelligence (AI) is a field of computer science focused on creating systems that can perform tasks that normally require human intelligence.
+
+Machine Learning (ML) is a subset of AI that enables computers to learn patterns from data and improve their performance without being explicitly programmed for every task.
+
+## Types of Machine Learning
+
+1. Supervised Learning: Models learn from labelled training data. Examples include spam detection and house price prediction.
+
+2. Unsupervised Learning: Models identify patterns in unlabelled data. Examples include customer segmentation and clustering.
+
+3. Reinforcement Learning: Models learn through interaction with an environment using rewards and penalties. Examples include robotics and game-playing agents.
+
+## Deep Learning
+
+Deep Learning is a subset of Machine Learning that uses artificial neural networks with multiple layers. It is commonly used in image recognition, speech processing and natural language processing.
+
+## Natural Language Processing
+
+Natural Language Processing (NLP) enables computers to understand, interpret and generate human language. Common applications include chatbots, translation systems and sentiment analysis.
+
+## Applications of AI
+
+- Healthcare: Medical image analysis and disease prediction.
+- Finance: Fraud detection and risk assessment.
+- Education: Personalized learning systems.
+- Transportation: Autonomous vehicles and traffic prediction.
+- Agriculture: Crop monitoring and yield prediction.
+
+## Limitations
+
+AI systems depend on the quality of their training data. They can produce incorrect results, inherit biases from data and require significant computing resources for complex tasks.
