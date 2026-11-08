@@ -6,12 +6,13 @@ A modern, interactive full-stack AI Document Chatbot built with **Streamlit** an
 
 ## Features
 
-- **Full-Stack Web Interface**: Clean, lightweight, responsive UI built with Streamlit (`st.chat_message`, `st.chat_input`, and `st.sidebar`).
+- **Multi-PDF Upload & Document Processing**: Upload one or multiple PDF documents directly through Streamlit's file uploader. Automatically extracts text page-by-page while preserving exact 0-indexed page metadata.
+- **In-Memory Session-Isolated Vector Store**: Each visitor receives a dedicated in-memory ChromaDB vector store collection (`session_<uuid>`). Uploaded documents, chunks, and conversation histories are strictly isolated and never leak or mix between concurrent users.
+- **Dynamic Document Management & Removal**: View all active documents with their chunk counts and delete individual files on demand. When a document is removed, its chunks are deleted from the vector store with zero duplicate or stale data left behind.
+- **Default Sample Document**: The default sample PDF (`sample_guide.pdf`) is pre-loaded on initial session startup. If removed, it can be re-added instantly via the **"📥 Sample PDF"** button.
 - **Real-Time Token Streaming**: Streams responses from Gemini token-by-token directly into the UI using `st.write_stream`.
-- **Session State Conversation History**: Preserves the complete dialog context during the session (`st.session_state`).
-- **Clear Chat & Reload Options**: One-click conversation reset and RAG cache refresh directly in the sidebar.
-- **RAG Backend Reuse**: Reuses the document loader, text splitter, ChromaDB vector store, and Gemini embeddings from `Task-2-RAG-Document-QA` without code duplication.
-- **Strict Grounding & Source Citations**: Answers are strictly grounded in retrieved document chunks. Displays human-readable document names and 1-based PDF page numbers (e.g. `sample_guide.pdf (Page 1)`).
+- **Strict Grounding & Human-Readable Citations**: Answers are strictly grounded in retrieved document chunks across all active PDFs. Displays human-readable document names and 1-based page numbers (e.g., `sample_guide.pdf (Page 1)`). Irrelevant citations are automatically suppressed if the requested information is absent.
+- **Robust Error Handling**: Safely handles 0-byte files, corrupted PDFs, scanned image-only documents, missing API keys, and model API errors with friendly UI alerts instead of crashes.
 
 ---
 
@@ -20,10 +21,11 @@ A modern, interactive full-stack AI Document Chatbot built with **Streamlit** an
 ```
 Task-4-Streamlit-AI-Chatbot/
 │
-├── app.py                         # Streamlit application entry point
+├── app.py                         # Upgraded Streamlit application with multi-PDF upload
+├── requirements.txt               # Streamlit Cloud & local dependencies
 ├── tests/
 │   ├── __init__.py
-│   └── test_chatbot.py            # Unit tests for backend integration & token streaming
+│   └── test_chatbot.py            # Automated tests for upload, removal, citations & isolation
 └── README.md                      # Documentation & execution instructions
 ```
 
@@ -36,7 +38,7 @@ Task-4-Streamlit-AI-Chatbot/
 - Task 2 virtual environment (`Task-2-RAG-Document-QA/venv`)
 - Task 2 environment configuration (`Task-2-RAG-Document-QA/.env`)
 
-### 2. Launch the Application
+### 2. Launch the Application Locally
 Run the Streamlit application using the Task 2 virtual environment from the repository root:
 
 ```powershell
@@ -55,9 +57,24 @@ Once started, open your web browser to:
 
 ---
 
+## Deploying to Streamlit Community Cloud
+
+1. Push your repository to GitHub.
+2. In [Streamlit Community Cloud](https://share.streamlit.io):
+   - **Repository**: Select your GitHub repo.
+   - **Main file path**: Set to `Task-4-Streamlit-AI-Chatbot/app.py`.
+   - **Advanced settings -> Secrets**: Add your Gemini credentials:
+     ```toml
+     GEMINI_API_KEY = "your_actual_gemini_api_key_here"
+     GEMINI_MODEL = "gemini-3.5-flash-lite"
+     ```
+3. Click **Deploy**. Streamlit Cloud will install dependencies from `Task-4-Streamlit-AI-Chatbot/requirements.txt` automatically.
+
+---
+
 ## Running the Automated Test Suite
 
-To run the automated unit tests:
+Run the comprehensive test suite (9 tests covering document extraction, empty/corrupt file handling, multi-document search, deletion, citations, and session isolation):
 
 ```powershell
 .\Task-2-RAG-Document-QA\venv\Scripts\python.exe -m unittest discover -s Task-4-Streamlit-AI-Chatbot\tests -p "test_*.py" -v
@@ -65,17 +82,19 @@ To run the automated unit tests:
 
 ---
 
-## Example Queries
+## Example Queries & Workflow
 
-1. **Verify Complete Concept Retrieval**:
-   - Query: `"What are the three types of machine learning?"`
-   - Streams the 3 types (*Supervised*, *Unsupervised*, and *Reinforcement Learning*) and cites `sample.txt`.
+1. **Querying Across Multiple PDFs**:
+   - Upload additional PDFs (e.g., `robotics.pdf`) in the sidebar.
+   - Ask: `"Compare machine learning approaches across the documents."`
+   - The assistant synthesizes information and cites both documents:
+     - `📌 Sources: sample_guide.pdf (Page 1) • robotics.pdf (Page 2)`
 
-2. **Verify PDF Page Citations**:
-   - Query: `"What is discussed on page 1 of the sample guide?"`
-   - Streams the answer and cites `sample_guide.pdf (Page 1)`.
+2. **Removing a Document**:
+   - Click the 🗑️ icon next to any document in the sidebar.
+   - The document's chunks are removed from the vector store immediately.
+   - Future queries will only retrieve information from remaining active documents.
 
-3. **Verify Strict Grounding**:
+3. **Grounded Refusal**:
    - Query: `"What is quantum computing?"`
-   - Responds: `"I couldn't find this information in the provided documents."` and suppresses irrelevant citations.
-
+   - Response: `"I couldn't find this information in the provided documents."` (with citations suppressed).
