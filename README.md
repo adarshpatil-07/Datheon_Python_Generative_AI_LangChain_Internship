@@ -9,7 +9,7 @@ This repository contains my project submissions for the Datheon Python, Generati
 | 1 | Structured LLM Prompt Pipeline & JSON Extractor | Completed |
 | 2 | Document Q&A Assistant with RAG | Completed |
 | 3 | Multi-Tool Autonomous AI Agent | Pending |
-| 4 | Interactive Full-Stack AI Chatbot | Pending |
+| 4 | Interactive Full-Stack AI Chatbot | Completed |
 
 ## Technologies
 
@@ -18,7 +18,8 @@ This repository contains my project submissions for the Datheon Python, Generati
 - Pydantic
 - LangChain
 - RAG
-- Vector Databases
+- ChromaDB
+- Streamlit
 
 ## Repository Structure
 
